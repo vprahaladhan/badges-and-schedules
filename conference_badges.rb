@@ -4,23 +4,24 @@ def badge_maker(name)
 end
 
 def batch_badge_creator(names)
-  batch_badges = []
-  names.each do |name|
-    batch_badges.push(badge_maker(name))
+  names.map do |name|
+    badge_maker(name)
   end
-  batch_badges
 end
 
-def assign_rooms(attendants)
+def assign_rooms(attendees)
   rooms = [1, 2, 3, 4, 5, 6, 7]
-  assignments = []
-  rooms.each_with_index do |room, index|
-    if attendants[index] == nil then break
+  room_assignments = []
+  rooms.map.with_index do |room, index|
+    if attendees[index] == nil then break
     end
-    assignments.push("Hello, #{attendants[index]}! You'll be assigned to room #{room}!")
+    room_assignments << "Hello, #{attendees[index]}! You'll be assigned to room #{room}!"
   end
-  assignments
+  room_assignments
 end
+
+attendees = ["Edsger"]
+puts assign_rooms(attendees)
 
 def printer(attendants)
   batch_badge_creator(attendants).each do |badge|
